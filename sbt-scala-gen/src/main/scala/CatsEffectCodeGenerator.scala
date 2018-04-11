@@ -56,7 +56,7 @@ object CatsEffectCodeGenerator extends ProtocCodeGenerator {
 
 object Fs2GrpcPlugin extends AutoPlugin {
   object autoImport {
-    val fs2CodeGenerator: (JvmGenerator, Seq[String]) = (JvmGenerator("fs2-grpc", CatsEffectCodeGenerator), Seq.empty)
+    val catsEffectGrpcCodeGenerator: (JvmGenerator, Seq[String]) = (JvmGenerator("cats-effect-grpc", CatsEffectCodeGenerator), Seq.empty)
   }
 
   override def requires = sbtprotoc.ProtocPlugin
