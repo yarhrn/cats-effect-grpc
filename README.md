@@ -1,6 +1,5 @@
 # cats-effect-grpc
 
-[![Join the chat at https://gitter.im/fs2-grpc/Lobby](https://badges.gitter.im/fs2-grpc/Lobby.svg)](https://gitter.im/fs2-grpc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 gRPC implementation for cats-effect
 
 ## SBT configuration
