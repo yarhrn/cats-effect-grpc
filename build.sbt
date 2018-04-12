@@ -55,6 +55,7 @@ lazy val `runtime-support` = project
       "io.grpc" % "grpc-netty-shaded" % "1.11.0" % "test",
       "org.scalatest" %% "scalatest" % "3.0.5" % "test",
       "io.grpc" % "grpc-core" % "1.11.0",
+      "io.grpc" % "grpc-stub" % "1.11.0",
     ),
     addCompilerPlugin("org.spire-math" % "kind-projector" % "0.9.6" cross CrossVersion.binary)
   )

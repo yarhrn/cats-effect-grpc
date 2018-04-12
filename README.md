@@ -1,4 +1,4 @@
-# cats-effect-grpc
+# cats-effect-grpc 0.1
 
 gRPC implementation for cats-effect
 

@@ -8,7 +8,7 @@ class CatsEffectGrpcServicePrinter(service: ServiceDescriptor) extends Descripto
   private[this] def serviceMethodSignature(method: MethodDescriptor) = {
     s"def ${method.name}" + (method.streamType match {
       case StreamType.Unary =>
-        s"(request: ${method.scalaIn}, clientHeaders: _root_.io.grpc.Metadata): F[${method.scalaOut}]"
+        s"(request: ${method.scalaIn}): F[${method.scalaOut}]"
     })
   }
 
@@ -58,14 +58,14 @@ class CatsEffectGrpcServicePrinter(service: ServiceDescriptor) extends Descripto
       .outdent
 
   private[this] def serviceTrait: PrinterEndo =
-    _.add(s"trait ${service.name}Fs2Grpc[F[_]] {").indent.call(serviceMethods).outdent.add("}")
+    _.add(s"trait ${service.name}K[F[_]] {").indent.call(serviceMethods).outdent.add("}")
 
   private[this] def serviceObject: PrinterEndo =
-    _.add(s"object ${service.name}Fs2Grpc {").indent.call(serviceClient).call(serviceBinding).outdent.add("}")
+    _.add(s"object ${service.name}K {").indent.call(serviceClient).call(serviceBinding).outdent.add("}")
 
   private[this] def serviceClient: PrinterEndo = {
     _.add(
-      s"def stub[F[_]: _root_.cats.effect.Effect](channel: _root_.io.grpc.Channel, callOptions: _root_.io.grpc.CallOptions = _root_.io.grpc.CallOptions.DEFAULT)(implicit ec: _root_.scala.concurrent.ExecutionContext): ${service.name}Fs2Grpc[F] = new ${service.name}Fs2Grpc[F] {").indent
+      s"def stub[F[_]: _root_.cats.effect.Async](channel: _root_.io.grpc.Channel, callOptions: _root_.io.grpc.CallOptions = _root_.io.grpc.CallOptions.DEFAULT)(implicit ec: _root_.scala.concurrent.ExecutionContext): ${service.name}Fs2Grpc[F] = new ${service.name}Fs2Grpc[F] {").indent
       .call(serviceMethodImplementations)
       .outdent
       .add("}")
